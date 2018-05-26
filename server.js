@@ -12,10 +12,10 @@ app.get('/:url', (req, res) => {
     }
 })
 
-app.get('/new/:url', (req, res) => {
-    shortURLs[++ shortURLs.count] = req.params.url
+app.get(/\/new\/(http(|s):\/\/\w+.\w+)/, (req, res) => {
+    shortURLs[++ shortURLs.count] = req.params[0]
     res.status(200).json({
-        "original_url": req.params.url,
+        "original_url": req.params[0],
         "short_url": shortURLs.count
     })
 })
